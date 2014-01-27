@@ -40,7 +40,6 @@ function EndExam() {
         if(Answers[index]=="R3"){AnswerId="#C"+index};if(LocalQuestionPool[index]["Correct"]=="R3"){CorrectId="#C"+index};
         if(Answers[index]=="R4"){AnswerId="#D"+index};if(LocalQuestionPool[index]["Correct"]=="R4"){CorrectId="#D"+index};
         $("#AllQuestions").append('<div id="Q'+index+'">'+(index+1)+'/'+TOTAL+'. '+LocalQuestionPool[index]["Question"]+'</div><div id="A'+index+'">A. '+LocalQuestionPool[index]["R1"]+'</div><div id="B'+index+'">B. '+LocalQuestionPool[index]["R2"]+'</div><div id="C'+index+'">C. '+LocalQuestionPool[index]["R3"]+'</div><div id="D'+index+'">D. '+LocalQuestionPool[index]["R4"]+'</div><hr>');
-        alert(Answers[index]);
         if(Answers[index] === undefined){
             NoResponse+=1;
             $("#A"+index).addClass("text-warning");
