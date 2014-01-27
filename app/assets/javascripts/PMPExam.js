@@ -59,7 +59,7 @@ function EndExam() {
         };
         $(CorrectId).addClass("text-success");
     });    
-    $("#Score").html("<h1>Score: "+Correct*100/TOTAL+"%</h1>").addClass("text-success");
+    $("#Score").html("<h1>Score: "+Math.round((Correct*100/TOTAL)*100)/100+"%</h1>").addClass("text-success");
     $("#Correct").html("Correct: "+Correct).addClass("text-success");
     $("#Incorrect").html("Incorrect: "+Incorrect).addClass("text-error");
     $("#NoResponse").html("NoResponse: "+NoResponse).addClass("text-warning");
