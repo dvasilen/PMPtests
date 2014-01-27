@@ -81,7 +81,7 @@ function StartExam() {
         $('#bR2').html("<b>B. </b>"+LocalQuestionPool[INDEX]["R2"]);if(Answers[INDEX]=="R2"){$("#R2").addClass("active");}else{$("#mark").removeClass("active");};
         $('#bR3').html("<b>C. </b>"+LocalQuestionPool[INDEX]["R3"]);if(Answers[INDEX]=="R3"){$("#R3").addClass("active");}else{$("#mark").removeClass("active");};
         $('#bR4').html("<b>D. </b>"+LocalQuestionPool[INDEX]["R4"]);if(Answers[INDEX]=="R4"){$("#R4").addClass("active");}else{$("#mark").removeClass("active");};
-        $("#Exam").slideDown( "slow", function() {});
+        $("#Exam").slideDown( "fast", function() {});
         if(INDEX==0){$("#prev").addClass("disabled")}else{$("#prev").removeClass("disabled") };
         if(INDEX==TOTAL-1){$("#next").addClass("disabled")}else{$("#next").removeClass("disabled") };
         if ($.inArray(INDEX,Marked)!==-1){$("#mark").addClass("btn-warning");}else{{$("#mark").removeClass("btn-warning");}}
