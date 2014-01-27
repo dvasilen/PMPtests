@@ -123,7 +123,6 @@ function StartExam() {
         }
     });
     $("#grid").click(function(){
-        EndExam();
     });
     $("#end").click(function(){
         EndExam();
