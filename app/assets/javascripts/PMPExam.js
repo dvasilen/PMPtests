@@ -23,6 +23,16 @@ $(document).ready(function(){
         TOTAL=parseInt($("#amount").val(), 10);
         $("#Welcome").slideUp( "slow", function() {});
         StartExam();
+        timer = new _timer;
+        timer.mode(1);
+        timer.start(1000);
+
+
+            //<button onClick="timer.start(1000)">Start</button> 
+            //<button onClick="timer.stop()">Stop</button> 
+            //<button onClick="timer.reset(60)">Reset</button> 
+            //<button onClick="timer.mode(1)">Count up</button> 
+            //<button onClick="timer.mode(0)">Count down</button>
     });
 });
 
@@ -119,8 +129,6 @@ function StartExam() {
         EndExam();
     });
 }
-
-
 
 
 
