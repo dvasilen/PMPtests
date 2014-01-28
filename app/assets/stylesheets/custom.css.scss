@@ -208,3 +208,12 @@ input {
   padding: 15px;
   @include box_sizing;
 }
+.GreyBox{
+  background-color: #F5F5F5;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  @include box_sizing;
+}
+
+label{white-space:normal;}

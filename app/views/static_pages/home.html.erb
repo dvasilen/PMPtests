@@ -1,7 +1,7 @@
 <% if signed_in? %>
 
 <div id="Welcome" class="row" style="display:none;">
-	<div id="QuestionBox" class="span10 offset1 center">
+	<div class="span10 offset1 center GreyBox">
 		<h2>Select number of Questions:</h2>
 		<p>
 		<input type="text" id="amount" disabled style="text-align:center; border:0; color:#f6931f; font-weight:bold;">
@@ -9,32 +9,36 @@
 		<div id="slider-range-max"></div>
 		<hr>
 		<button id="StartExam" class="btn btn-large btn-success" type="button">Start!</button>
-
 	</div>
 </div>
 
 <div id="Exam" class="row" style="display:none;">
+	<div class="row">
+		<div class="span3 offset3"><button id="grid" type="button" class="btn"><i class="icon-search"></i> See Grid</button></div>
+		<div class="span3"><div class="timer"><span class="hour">00</span>:<span class="minute">00</span>:<span class="second">00</span></div></div>
+	</div>
+	<hr>
+	<div id="gridBox" class="span10 offset1 GreyBox" style="display:none;">
+		<div class="row">
+			<div id="gridCol1" class="span3"></div>
+			<div id="gridCol2" class="span3"></div>
+			<div id="gridCol3" class="span3"></div>
+		</div>
+    </div>
 
-
-        <div class="timer">
-            <span class="hour">00</span>:<span class="minute">00</span>:<span class="second">00</span>
-        </div>
-
-	
-	<div id="QuestionBox" class="span10 offset1">
+	<div id="actualQuestion" class="span10 offset1 GreyBox">
 		<div class="row"><div class="span9"><p class="lead"><span id="Question"></span></p></div></div>
 		<div class="row"><div class="span9">
 			<div id="QuestionGroup" class="span9 btn-group btn-group-vertical" data-toggle="buttons-radio">
-			  <button id="R1" type="button" class="btn btn-block"><p class="text-left"><span id="bR1"></span></p></button>
-			  <button id="R2" type="button" class="btn btn-block"><p class="text-left"><span id="bR2"></span></p></button>
-			  <button id="R3" type="button" class="btn btn-block"><p class="text-left"><span id="bR3"></span></p></button>
-			  <button id="R4" type="button" class="btn btn-block"><p class="text-left"><span id="bR4"></span></p></button>
+				<label class="radio" id="bR1"></label>
+				<label class="radio" id="bR2"></label>
+				<label class="radio" id="bR3"></label>
+				<label class="radio" id="bR4"></label>
 			</div>
 		</div></div>
 		<div class="row"><div class="span9"><p class="lead"><hr></p></div></div>
 		<div class="row"><div class="span9">
 			<button id="end" type="button" class="btn btn-danger"><i class="icon-ok icon-white"></i> End Exam!</button>
-			<button id="grid" type="button" class="btn"><i class="icon-search"></i> See Grid</button>
 			<div class="btn-group pull-right">
 				<button id="mark" type="button" class="btn"><i class="icon-pencil"></i> Mark for review</button>
 				<button id="prev" type="button" class="btn btn-primary"><i class="icon-chevron-left"></i> Prev</button>
@@ -46,13 +50,13 @@
 
 
 <div id="Results" class="row" style="display:none;">
-	<div id="QuestionBox" class="span10 offset1">
+	<div class="span10 offset1 GreyBox">
 		<div id="Score"></div>
 		<div id="Correct"></div>
 		<div id="Incorrect"></div>
 		<div id="NoResponse"></div>
 	</div>
-	<div id="QuestionBox" class="span10 offset1">
+	<div class="span10 offset1 GreyBox">
 		<div id="AllQuestions"></div>
 	</div>
 </div>

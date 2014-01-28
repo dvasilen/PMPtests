@@ -23,16 +23,7 @@ $(document).ready(function(){
         TOTAL=parseInt($("#amount").val(), 10);
         $("#Welcome").slideUp( "slow", function() {});
         StartExam();
-        timer = new _timer;
-        timer.mode(1);
-        timer.start(1000);
-
-
-            //<button onClick="timer.start(1000)">Start</button> 
-            //<button onClick="timer.stop()">Stop</button> 
-            //<button onClick="timer.reset(60)">Reset</button> 
-            //<button onClick="timer.mode(1)">Count up</button> 
-            //<button onClick="timer.mode(0)">Count down</button>
+        timer = new _timer;timer.mode(1);timer.start(1000);
     });
 });
 
@@ -58,14 +49,8 @@ function EndExam() {
             $("#D"+index).addClass("text-warning");
         }
         else{
-            if(Answers[index]==LocalQuestionPool[index]["Correct"]){
-                Correct+=1;
-                $(AnswerId).addClass("text-success");
-            }
-            else{
-                Incorrect+=1;
-                $(AnswerId).addClass("text-error");
-            }
+            if(Answers[index]==LocalQuestionPool[index]["Correct"]){Correct+=1;$(AnswerId).addClass("text-success");}
+            else{Incorrect+=1;$(AnswerId).addClass("text-error");}
         };
         $(CorrectId).addClass("text-success");
     });    
@@ -81,16 +66,21 @@ function EndExam() {
 
 
 function StartExam() {
+    $("#Exam").show();
+    function SaveStatus(LocalQuestionPool,INDEX,TOTAL) {
+
+    }
     function InsertQuestion(LocalQuestionPool,INDEX,TOTAL) {
-        $("#Exam").hide();
+        $("#actualQuestion").hide();
+        $("#gridBox").hide();
         $('#QuestionGroup').children('.active').removeClass("active");
         ShowIndex=INDEX+1;
         $('#Question').html("<b>"+ShowIndex+"/"+TOTAL+".</b> "+LocalQuestionPool[INDEX]["Question"]);
-        $('#bR1').html("<b>A. </b>"+LocalQuestionPool[INDEX]["R1"]);if(Answers[INDEX]=="R1"){$("#R1").addClass("active");}else{$("#mark").removeClass("active");};
-        $('#bR2').html("<b>B. </b>"+LocalQuestionPool[INDEX]["R2"]);if(Answers[INDEX]=="R2"){$("#R2").addClass("active");}else{$("#mark").removeClass("active");};
-        $('#bR3').html("<b>C. </b>"+LocalQuestionPool[INDEX]["R3"]);if(Answers[INDEX]=="R3"){$("#R3").addClass("active");}else{$("#mark").removeClass("active");};
-        $('#bR4').html("<b>D. </b>"+LocalQuestionPool[INDEX]["R4"]);if(Answers[INDEX]=="R4"){$("#R4").addClass("active");}else{$("#mark").removeClass("active");};
-        $("#Exam").slideDown( "fast", function() {});
+        $('#bR1').html('<input type="radio" name="optionsRadios" id="R1" value="R1"><b>A. </b>'+LocalQuestionPool[INDEX]["R1"]);if(Answers[INDEX]=="R1"){$("#R1").addClass("active");}else{$("#mark").removeClass("active");};
+        $('#bR2').html('<input type="radio" name="optionsRadios" id="R2" value="R2"><b>B. </b>'+LocalQuestionPool[INDEX]["R2"]);if(Answers[INDEX]=="R2"){$("#R2").addClass("active");}else{$("#mark").removeClass("active");};
+        $('#bR3').html('<input type="radio" name="optionsRadios" id="R3" value="R3"><b>C. </b>'+LocalQuestionPool[INDEX]["R3"]);if(Answers[INDEX]=="R3"){$("#R3").addClass("active");}else{$("#mark").removeClass("active");};
+        $('#bR4').html('<input type="radio" name="optionsRadios" id="R4" value="R4"><b>D. </b>'+LocalQuestionPool[INDEX]["R4"]);if(Answers[INDEX]=="R4"){$("#R4").addClass("active");}else{$("#mark").removeClass("active");};
+        $("#actualQuestion").slideDown( "fast", function() {});
         if(INDEX==0){$("#prev").addClass("disabled")}else{$("#prev").removeClass("disabled") };
         if(INDEX==TOTAL-1){$("#next").addClass("disabled")}else{$("#next").removeClass("disabled") };
         if ($.inArray(INDEX,Marked)!==-1){$("#mark").addClass("btn-warning");}else{{$("#mark").removeClass("btn-warning");}}
@@ -100,14 +90,14 @@ function StartExam() {
     InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
     $("#next").click(function(){
         if(!$(this).hasClass("disabled")){
-            Answers[INDEX]=$('#QuestionGroup').children('.active').attr("id");
+            Answers[INDEX]=$('input[name=optionsRadios]:checked').attr("id");
             if(INDEX<TOTAL){INDEX=INDEX+1;};
             InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
         }   
     });
     $("#prev").click(function(){
         if(!$(this).hasClass("disabled")){
-            Answers[INDEX]=$('#QuestionGroup').children('.active').attr("id");
+            Answers[INDEX]=$('input[name=optionsRadios]:checked').attr("id");
             if(INDEX>0){INDEX=INDEX-1;};
             InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
         }   
@@ -123,8 +113,35 @@ function StartExam() {
         }
     });
     $("#grid").click(function(){
+        Answers[INDEX]=$('input[name=optionsRadios]:checked').attr("id");
+        $(this).toggleClass("btn-primary");
+        if($(this).hasClass("btn-primary")){
+            $("#actualQuestion").slideUp( "fast", function() {
+                $("#gridCol1").html("");$("#gridCol2").html("");$("#gridCol3").html("");
+                $.each(LocalQuestionPool, function(index, value) {
+                    if (index<TOTAL/3){Column="#gridCol1";}else{if (index<2*TOTAL/3){Column="#gridCol2";}else{Column="#gridCol3";};};
+                    if(Answers[index] === undefined){ResponseValue='';}else{ResponseValue=Answers[index];if(ResponseValue=="R1"){ResponseValue="A"};if(ResponseValue=="R2"){ResponseValue="B"};if(ResponseValue=="R3"){ResponseValue="C"};if(ResponseValue=="R4"){ResponseValue="D"};};
+                    ButtonToAdd='<button class="btn btn-large btn-block ToQuestion" type="button" index="'+index+'">Q'+(index+1)+': '+ResponseValue+'</button>';
+                    if ($.inArray(index,Marked)!==-1){ButtonToAdd=$(ButtonToAdd).addClass("btn-warning");};
+                    $(Column).append(ButtonToAdd);
+                });
+
+                $(".ToQuestion").click(function(){
+                    INDEX=parseInt($(this).attr("index"));
+                    $("#grid").toggleClass("btn-primary");
+                    InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
+                });
+                 $("#gridBox").slideDown( "fast", function() {});
+            });
+        }
+        else{
+            $("#gridBox").slideUp( "fast", function() {
+                 $("#actualQuestion").slideDown( "fast", function() {});
+            });
+        }
     });
     $("#end").click(function(){
+        Answers[INDEX]=$('input[name=optionsRadios]:checked').attr("id");
         EndExam();
     });
 }
