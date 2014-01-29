@@ -15,7 +15,7 @@ $(document).ready(function(){
             range: "max",
             min: 1,
             max: QuestionPool["Questions"].length,
-            value: QuestionPool["Questions"].length/2,
+            value: 200,
             slide: function( event, ui ) {$( "#amount" ).val( ui.value );}});$( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) 
         );
     });
@@ -76,10 +76,10 @@ function StartExam() {
         $('#QuestionGroup').children('.active').removeClass("active");
         ShowIndex=INDEX+1;
         $('#Question').html("<b>"+ShowIndex+"/"+TOTAL+".</b> "+LocalQuestionPool[INDEX]["Question"]);
-        $('#bR1').html('<input type="radio" name="optionsRadios" id="R1" value="R1"><b>A. </b>'+LocalQuestionPool[INDEX]["R1"]);if(Answers[INDEX]=="R1"){$("#R1").addClass("active");}else{$("#mark").removeClass("active");};
-        $('#bR2').html('<input type="radio" name="optionsRadios" id="R2" value="R2"><b>B. </b>'+LocalQuestionPool[INDEX]["R2"]);if(Answers[INDEX]=="R2"){$("#R2").addClass("active");}else{$("#mark").removeClass("active");};
-        $('#bR3').html('<input type="radio" name="optionsRadios" id="R3" value="R3"><b>C. </b>'+LocalQuestionPool[INDEX]["R3"]);if(Answers[INDEX]=="R3"){$("#R3").addClass("active");}else{$("#mark").removeClass("active");};
-        $('#bR4').html('<input type="radio" name="optionsRadios" id="R4" value="R4"><b>D. </b>'+LocalQuestionPool[INDEX]["R4"]);if(Answers[INDEX]=="R4"){$("#R4").addClass("active");}else{$("#mark").removeClass("active");};
+        $('#bR1').html('<input type="radio" name="optionsRadios" id="R1" value="R1"><b>A. </b>'+LocalQuestionPool[INDEX]["R1"]);if(Answers[INDEX]=="R1"){$("#R1").attr('checked', 'checked');}else{$("#mark").attr('checked', '');};
+        $('#bR2').html('<input type="radio" name="optionsRadios" id="R2" value="R2"><b>B. </b>'+LocalQuestionPool[INDEX]["R2"]);if(Answers[INDEX]=="R2"){$("#R2").attr('checked', 'checked');}else{$("#mark").attr('checked', '');};
+        $('#bR3').html('<input type="radio" name="optionsRadios" id="R3" value="R3"><b>C. </b>'+LocalQuestionPool[INDEX]["R3"]);if(Answers[INDEX]=="R3"){$("#R3").attr('checked', 'checked');}else{$("#mark").attr('checked', '');};
+        $('#bR4').html('<input type="radio" name="optionsRadios" id="R4" value="R4"><b>D. </b>'+LocalQuestionPool[INDEX]["R4"]);if(Answers[INDEX]=="R4"){$("#R4").attr('checked', 'checked');}else{$("#mark").attr('checked', '');};
         $("#actualQuestion").slideDown( "fast", function() {});
         if(INDEX==0){$("#prev").addClass("disabled")}else{$("#prev").removeClass("disabled") };
         if(INDEX==TOTAL-1){$("#next").addClass("disabled")}else{$("#next").removeClass("disabled") };
@@ -145,6 +145,3 @@ function StartExam() {
         EndExam();
     });
 }
-
-
-
