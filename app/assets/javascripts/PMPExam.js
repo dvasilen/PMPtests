@@ -1,5 +1,3 @@
-//alert("Has escrito:"+QuestionPool["Questions"][34]["Question"]);
-
 //randomize
 (function($) {$.randomize = function(arr) {for(var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);return arr;};})(jQuery);
 
@@ -16,12 +14,29 @@ $(document).ready(function(){
             min: 1,
             max: QuestionPool["Questions"].length,
             value: 200,
-            slide: function( event, ui ) {$( "#amount" ).val( ui.value );}});$( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) 
+            slide: function( event, ui ) {$( "#QuestionsBank" ).val( ui.value );}});$( "#QuestionsBank" ).val( $( "#slider-range-max" ).slider( "value" ) 
+        );
+    });
+    $(function() {
+        $( "#rita-slider-range-max" ).slider({
+            range: "max",
+            min: 1,
+            max: RitaPool["Questions"].length,
+            value: RitaPool["Questions"].length,
+            slide: function( event, ui ) {$( "#RitaBank" ).val( ui.value );}});$( "#RitaBank" ).val( $( "#rita-slider-range-max" ).slider( "value" ) 
         );
     });
     $("#StartExam").click(function(){
-        TOTAL=parseInt($("#amount").val(), 10);
+        TOTAL=parseInt($("#QuestionsBank").val(), 10);
         $("#Welcome").slideUp( "slow", function() {});
+        SelectedQuestionPool = QuestionPool;
+        StartExam();
+        timer = new _timer;timer.mode(1);timer.start(1000);
+    });
+    $("#StartRita").click(function(){
+        TOTAL=parseInt($("#RitaBank").val(), 10);
+        $("#Welcome").slideUp( "slow", function() {});
+        SelectedQuestionPool = RitaPool;
         StartExam();
         timer = new _timer;timer.mode(1);timer.start(1000);
     });
@@ -86,7 +101,7 @@ function StartExam() {
         if ($.inArray(INDEX,Marked)!==-1){$("#mark").addClass("btn-warning");}else{{$("#mark").removeClass("btn-warning");}}
 
     }        
-    LocalQuestionPool=$.randomize(QuestionPool["Questions"]).slice(0,TOTAL);
+    LocalQuestionPool=$.randomize(SelectedQuestionPool["Questions"]).slice(0,TOTAL);
     InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
     $("#next").click(function(){
         if(!$(this).hasClass("disabled")){
