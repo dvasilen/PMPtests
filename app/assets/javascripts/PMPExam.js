@@ -26,8 +26,18 @@ $(document).ready(function(){
             slide: function( event, ui ) {$( "#RitaBank" ).val( ui.value );}});$( "#RitaBank" ).val( $( "#rita-slider-range-max" ).slider( "value" ) 
         );
     });
+    $(function() {
+        $( "#att-slider-range-max" ).slider({
+            range: "max",
+            min: 1,
+            max: ATTPool["Questions"].length,
+            value: ATTPool["Questions"].length,
+            slide: function( event, ui ) {$( "#ATTBank" ).val( ui.value );}});$( "#ATTBank" ).val( $( "#att-slider-range-max" ).slider( "value" ) 
+        );
+    });
     $("#StartExam").click(function(){
         TOTAL=parseInt($("#QuestionsBank").val(), 10);
+        if(TOTAL>QuestionPool["Questions"].length){TOTAL=QuestionPool["Questions"].length;}
         $("#Welcome").slideUp( "slow", function() {});
         SelectedQuestionPool = QuestionPool;
         StartExam();
@@ -35,8 +45,15 @@ $(document).ready(function(){
     });
     $("#StartRita").click(function(){
         TOTAL=parseInt($("#RitaBank").val(), 10);
-        $("#Welcome").slideUp( "slow", function() {});
+        $("#Welcome").slideUp("slow", function() {});
         SelectedQuestionPool = RitaPool;
+        StartExam();
+        timer = new _timer;timer.mode(1);timer.start(1000);
+    });
+    $("#StartATT").click(function(){
+        TOTAL=parseInt($("#ATTBank").val(), 10);
+        $("#Welcome").slideUp("slow", function() {});
+        SelectedQuestionPool = ATTPool;
         StartExam();
         timer = new _timer;timer.mode(1);timer.start(1000);
     });
