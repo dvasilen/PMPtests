@@ -54,6 +54,13 @@ $(document).ready(function(){
 
 
 function EndExam() {
+    timer.stop();TotalTime=parseInt(timer.getTime());
+    var second = TotalTime % 60;var minute = Math.floor(TotalTime / 60) % 60;var hour = Math.floor(TotalTime / 3600) % 60;    
+    Totalsecond = (second < 10) ? '0'+second : second;Totalminute = (minute < 10) ? '0'+minute : minute;Totalhour = (hour < 10) ? '0'+hour : hour;
+    TotalQuestion=TotalTime/TOTAL;
+    var second = Math.round((TotalQuestion % 60) * 100) / 100;var minute = Math.floor(TotalQuestion / 60) % 60;var hour = Math.floor(TotalQuestion / 3600) % 60;    
+    TotalQuestionsecond = (second < 10) ? '0'+second : second;TotalQuestionminute = (minute < 10) ? '0'+minute : minute;TotalQuestionhour = (hour < 10) ? '0'+hour : hour;
+
     Correct=0;Incorrect=0;NoResponse=0;
     $("#Exam").hide();
     PrintAnswers="";
@@ -77,7 +84,8 @@ function EndExam() {
             else{Incorrect+=1;$(AnswerId).addClass("text-error");}
         };
         $(CorrectId).addClass("text-success");
-    });    
+    }); 
+    $("#Time").html("Total time = "+Totalhour+":"+Totalminute+":"+Totalsecond+" / Question = "+TotalQuestionhour+":"+TotalQuestionminute+":"+TotalQuestionsecond);
     $("#Score").html("<h1>Score: "+Math.round((Correct*100/TOTAL)*100)/100+"%</h1>").addClass("text-success");
     $("#Correct").html("Correct: "+Correct).addClass("text-success");
     $("#Incorrect").html("Incorrect: "+Incorrect).addClass("text-error");
