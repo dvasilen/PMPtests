@@ -2,63 +2,23 @@
 
 <div id="Welcome" class="row" style="display:none;">
 	<div class="span10 offset1 center GreyBox">
-		<h3>Complete question pool</h3>
-		<h2>Select number of Questions:</h2>
-		<p>
-		<input type="text" id="QuestionsBank" style="text-align:center; border:0; color:#f6931f; font-weight:bold;">
-		</p>
+		<h3>PMP Test Exam</h3>
+		<hr>
+		<h2>Select question banks:</h2>
+		<div class="row"><div class="span6 offset2">
+			<button id="PMPExam" class="btn btn-primary btn-block active" type="button">PMPexamPT&SG - Exam [<span></span>]</button>
+			<button id="QuestionPool" class="btn btn-primary btn-block" type="button">Question Pool (PMBOK 4th) [<span></span>]</button>
+			<button id="RitaPool" class="btn btn-primary btn-block" type="button">Rita's Practice Exams [<span></span>]</button>
+			<button id="ATTPool" class="btn btn-primary btn-block" type="button">ATT PMN Exam [<span></span>]</button>
+			<button id="PMPpractice" class="btn  btn-primary btn-block" type="button">PMPexamPT&SG - Practice Questions [<span></span>]</button>
+		</div></div>
+		<hr>
+		<h2>Select number of Questions (Bank total = <span id="totalbank"></span>):</h2>
+		<p><input type="text" id="QuestionsBank" style="text-align:center; border:0; color:#f6931f; font-weight:bold;"></p>
 		<div id="slider-range-max"></div>
 		<hr>
-		<button id="StartExam" class="btn btn-large btn-success" type="button">All questions</button>
+		<button id="StartExam" class="btn btn-large btn-success" type="button">Start!</button>
 	</div>
-	<div class="span10 offset1 center "><hr></div>
-	<div class="span10 offset1 center GreyBox">
-		<h3>Rita practice exams</h3>
-		<h2>Select number of Questions:</h2>
-		<p>
-		<input type="text" id="RitaBank" disabled style="text-align:center; border:0; color:#f6931f; font-weight:bold;">
-		</p>
-		<div id="rita-slider-range-max"></div>
-		<hr>
-		<button id="StartRita" class="btn btn-large btn-primary" type="button">Rita's Practice exams</button>
-	</div>
-	<div class="span10 offset1 center "><hr></div>
-	<div class="span10 offset1 center GreyBox">
-		<h3>ATT Exam</h3>
-		<h2>Select number of Questions:</h2>
-		<p>
-		<input type="text" id="ATTBank" disabled style="text-align:center; border:0; color:#f6931f; font-weight:bold;">
-		</p>
-		<div id="att-slider-range-max"></div>
-		<hr>
-		<button id="StartATT" class="btn btn-large btn-primary" type="button">ATT exam</button>
-	</div>
-
-
-
-	<div class="span10 offset1 center "><hr></div>
-	<div class="span10 offset1 center GreyBox">
-		<h3>PMP Exam Practice Study Guide Questions</h3>
-		<h2>Select number of Questions:</h2>
-		<p>
-		<input type="text" id="PMPpracticeBank" disabled style="text-align:center; border:0; color:#f6931f; font-weight:bold;">
-		</p>
-		<div id="pmppractice-slider-range-max"></div>
-		<hr>
-		<button id="StartPMPpractice" class="btn btn-large btn-warning" type="button">PMP Questions</button>
-	</div>
-	<div class="span10 offset1 center "><hr></div>
-	<div class="span10 offset1 center GreyBox">
-		<h3>PMP Exam Practice Test</h3>
-		<h2>Select number of Questions:</h2>
-		<p>
-		<input type="text" id="PMPExamBank" disabled style="text-align:center; border:0; color:#f6931f; font-weight:bold;">
-		</p>
-		<div id="pmpexam-slider-range-max"></div>
-		<hr>
-		<button id="StartPMPExam" class="btn btn-large btn-warning" type="button">PMP Exam</button>
-	</div>
-
 </div>
 
 <div id="Exam" class="row" style="display:none;">

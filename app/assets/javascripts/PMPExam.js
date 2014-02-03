@@ -7,85 +7,45 @@ Answers=[];
 Marked=[];
 
 $(document).ready(function(){
+    function SetPool() {
+        SelectedQuestionPool=[];
+        if ($("#PMPExam").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPExam["Questions"]);};
+        if ($("#QuestionPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(QuestionPool["Questions"]);};
+        if ($("#RitaPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(RitaPool["Questions"]);};
+        if ($("#ATTPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(ATTPool["Questions"]);};
+        if ($("#PMPpractice").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPpractice["Questions"]);};
+        $("#slider-range-max").slider("option", "max", SelectedQuestionPool.length);
+        $("#QuestionsBank").val( $( "#slider-range-max" ).slider( "value" ));
+        $("#totalbank").html(SelectedQuestionPool.length);
+    };
+    $('#PMPExam span').html(PMPExam["Questions"].length);
+    $('#QuestionPool span').html(QuestionPool["Questions"].length);
+    $('#RitaPool span').html(RitaPool["Questions"].length);
+    $('#ATTPool span').html(ATTPool["Questions"].length);
+    $('#PMPpractice span').html(PMPpractice["Questions"].length);
     $("#Welcome").slideDown( "slow", function() {});
     $(function() {
         $( "#slider-range-max" ).slider({
             range: "max",
             min: 1,
-            max: QuestionPool["Questions"].length,
-            value: 200,
-            slide: function( event, ui ) {$( "#QuestionsBank" ).val( ui.value );}});$( "#QuestionsBank" ).val( $( "#slider-range-max" ).slider( "value" ) 
-        );
-    });
-    $(function() {
-        $( "#rita-slider-range-max" ).slider({
-            range: "max",
-            min: 1,
-            max: RitaPool["Questions"].length,
-            value: RitaPool["Questions"].length,
-            slide: function( event, ui ) {$( "#RitaBank" ).val( ui.value );}});$( "#RitaBank" ).val( $( "#rita-slider-range-max" ).slider( "value" ) 
-        );
-    });
-    $(function() {
-        $( "#att-slider-range-max" ).slider({
-            range: "max",
-            min: 1,
-            max: ATTPool["Questions"].length,
-            value: ATTPool["Questions"].length,
-            slide: function( event, ui ) {$( "#ATTBank" ).val( ui.value );}});$( "#ATTBank" ).val( $( "#att-slider-range-max" ).slider( "value" ) 
-        );
-    });
-    $(function() {
-        $( "#pmppractice-slider-range-max" ).slider({
-            range: "max",
-            min: 1,
-            max: PMPpractice["Questions"].length,
-            value: PMPpractice["Questions"].length,
-            slide: function( event, ui ) {$( "#PMPpracticeBank" ).val( ui.value );}});$( "#PMPpracticeBank" ).val( $( "#pmppractice-slider-range-max" ).slider( "value" ) 
-        );
-    });
-    $(function() {
-        $( "#pmpexam-slider-range-max" ).slider({
-            range: "max",
-            min: 1,
             max: PMPExam["Questions"].length,
             value: PMPExam["Questions"].length,
-            slide: function( event, ui ) {$( "#PMPExamBank" ).val( ui.value );}});$( "#PMPExamBank" ).val( $( "#pmpexam-slider-range-max" ).slider( "value" ) 
-        );
+            slide: function( event, ui ) {
+                $( "#QuestionsBank" ).val( ui.value );
+            }
+        });
+        $( "#QuestionsBank" ).val( $( "#slider-range-max" ).slider( "value" ));
+        SetPool();
     });
+    $( "#PMPExam" ).click(function() {$(this).toggleClass("active");SetPool();});
+    $( "#QuestionPool" ).click(function() {$(this).toggleClass("active");SetPool();});
+    $( "#RitaPool" ).click(function() {$(this).toggleClass("active");SetPool();});
+    $( "#ATTPool" ).click(function() {$(this).toggleClass("active");SetPool();});
+    $( "#PMPpractice" ).click(function() {$(this).toggleClass("active");SetPool();});
     $("#StartExam").click(function(){
         TOTAL=parseInt($("#QuestionsBank").val(), 10);
-        if(TOTAL>QuestionPool["Questions"].length){TOTAL=QuestionPool["Questions"].length;}
+        if(TOTAL>SelectedQuestionPool.length){TOTAL=SelectedQuestionPool.length;}
         $("#Welcome").slideUp( "slow", function() {});
-        SelectedQuestionPool = QuestionPool;
-        StartExam();
-        timer = new _timer;timer.mode(1);timer.start(1000);
-    });
-    $("#StartRita").click(function(){
-        TOTAL=parseInt($("#RitaBank").val(), 10);
-        $("#Welcome").slideUp("slow", function() {});
-        SelectedQuestionPool = RitaPool;
-        StartExam();
-        timer = new _timer;timer.mode(1);timer.start(1000);
-    });
-    $("#StartATT").click(function(){
-        TOTAL=parseInt($("#ATTBank").val(), 10);
-        $("#Welcome").slideUp("slow", function() {});
-        SelectedQuestionPool = ATTPool;
-        StartExam();
-        timer = new _timer;timer.mode(1);timer.start(1000);
-    });
-    $("#StartPMPpractice").click(function(){
-        TOTAL=parseInt($("#ATTBank").val(), 10);
-        $("#Welcome").slideUp("slow", function() {});
-        SelectedQuestionPool = PMPpractice;
-        StartExam();
-        timer = new _timer;timer.mode(1);timer.start(1000);
-    });
-    $("#StartPMPExam").click(function(){
-        TOTAL=parseInt($("#PMPExamBank").val(), 10);
-        $("#Welcome").slideUp("slow", function() {});
-        SelectedQuestionPool = PMPExam;
         StartExam();
         timer = new _timer;timer.mode(1);timer.start(1000);
     });
@@ -150,7 +110,7 @@ function StartExam() {
         if ($.inArray(INDEX,Marked)!==-1){$("#mark").addClass("btn-warning");}else{{$("#mark").removeClass("btn-warning");}}
 
     }        
-    LocalQuestionPool=$.randomize(SelectedQuestionPool["Questions"]).slice(0,TOTAL);
+    LocalQuestionPool=$.randomize(SelectedQuestionPool).slice(0,TOTAL);
     InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
     $("#next").click(function(){
         if(!$(this).hasClass("disabled")){
