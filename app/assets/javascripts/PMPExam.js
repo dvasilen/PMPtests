@@ -35,6 +35,24 @@ $(document).ready(function(){
             slide: function( event, ui ) {$( "#ATTBank" ).val( ui.value );}});$( "#ATTBank" ).val( $( "#att-slider-range-max" ).slider( "value" ) 
         );
     });
+    $(function() {
+        $( "#pmppractice-slider-range-max" ).slider({
+            range: "max",
+            min: 1,
+            max: PMPpractice["Questions"].length,
+            value: PMPpractice["Questions"].length,
+            slide: function( event, ui ) {$( "#PMPpracticeBank" ).val( ui.value );}});$( "#PMPpracticeBank" ).val( $( "#pmppractice-slider-range-max" ).slider( "value" ) 
+        );
+    });
+    $(function() {
+        $( "#pmpexam-slider-range-max" ).slider({
+            range: "max",
+            min: 1,
+            max: PMPExam["Questions"].length,
+            value: PMPExam["Questions"].length,
+            slide: function( event, ui ) {$( "#PMPExamBank" ).val( ui.value );}});$( "#PMPExamBank" ).val( $( "#pmpexam-slider-range-max" ).slider( "value" ) 
+        );
+    });
     $("#StartExam").click(function(){
         TOTAL=parseInt($("#QuestionsBank").val(), 10);
         if(TOTAL>QuestionPool["Questions"].length){TOTAL=QuestionPool["Questions"].length;}
@@ -54,6 +72,20 @@ $(document).ready(function(){
         TOTAL=parseInt($("#ATTBank").val(), 10);
         $("#Welcome").slideUp("slow", function() {});
         SelectedQuestionPool = ATTPool;
+        StartExam();
+        timer = new _timer;timer.mode(1);timer.start(1000);
+    });
+    $("#StartPMPpractice").click(function(){
+        TOTAL=parseInt($("#ATTBank").val(), 10);
+        $("#Welcome").slideUp("slow", function() {});
+        SelectedQuestionPool = PMPpractice;
+        StartExam();
+        timer = new _timer;timer.mode(1);timer.start(1000);
+    });
+    $("#StartPMPExam").click(function(){
+        TOTAL=parseInt($("#PMPExamBank").val(), 10);
+        $("#Welcome").slideUp("slow", function() {});
+        SelectedQuestionPool = PMPExam;
         StartExam();
         timer = new _timer;timer.mode(1);timer.start(1000);
     });
