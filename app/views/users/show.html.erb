@@ -10,12 +10,39 @@
   </aside>
 </div>
 <div id="Results" class="row">
+	<h1>Total</h1>
 	<div class="span10 offset1 GreyBox">
-		<div id="Score">Score = <%=@totalscore%></div>
-		<div id="Time">Total time = <%=@totaltime%></div>
-		<div id="Correct">Correct =<%=@totalcorrect%></div>
-		<div id="Incorrect">Incorrect =<%=@totalincorrect%></div>
-		<div id="NoResponse">No Response =<%=@totalnoanswer%></div>
-		<div id="Total">Total Questions =<%=@totalquest%></div>
-	</div>	
+		<div class="span4">
+		<p id="Score" class="text-success">Score = <%=@totalscore%>%</p>
+			<p id="Correct" class="text-success">Correct =<%=@totalcorrect%></p>
+			<p id="Total" class="">Total Questions =<%=@totalquest%></p>
+		</div>
+		<div class="span4">
+			<p id="Incorrect" class="text-error">Incorrect =<%=@totalincorrect%></p>
+			<p id="NoResponse" class="text-warning">No Response =<%=@totalnoanswer%></p>
+			<p id="Time" class="">Total time = <%=@totaltime%></p>
+		</div>
+	</div>
+	<div class="span10 offset1 "><hr></div>
+    <% if @user.statistics.any? %>
+	<div class="span10 offset1 ">
+      <h3>Exams: (<%= @user.statistics.count %>)</h3>
+	</div>
+	<% @statistics.each do |statistic| %>
+	<div class="span10 offset1 GreyBox ">
+		<h3><%= statistic.correct %>/<%= statistic.total %> (<%= statistic.score %>%)</h3>
+		<div class="span4">
+			<p class="text-success">Correct = <%= statistic.correct %></p>	  
+			<p class="text-error">Incorrect = <%= statistic.incorrect %></p>
+		</div>
+		<div class="span4">
+			<p class="text-warning">No Answer = <%= statistic.noanswer %></p>	  
+			<p>Time = <%= statistic.time %></p>
+		</div>	  
+	</div>
+	<div class="span10 offset1 "><hr></div>
+	<% end %>
+      <%= will_paginate @statistics %>
+    <% end %>
+
 </div>

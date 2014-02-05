@@ -6,6 +6,6 @@ class Statistic < ActiveRecord::Base
 	end
 	
 	def score
-		correct / total * 100
+		100 * correct / total
 	end
 end

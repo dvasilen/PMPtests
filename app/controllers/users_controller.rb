@@ -9,15 +9,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-	auxTime = User.find(current_user).statistics.map{|x| x.time}.sum
-	
-	
-	@totaltime = (auxTime / 3600).to_s + "h" + (auxTime / 60 % 60).to_s + "m" + (auxTime % 60).to_s + "s"
-	@totalcorrect = User.find(current_user).statistics.map{|x| x.correct}.sum
-	@totalincorrect = User.find(current_user).statistics.map{|x| x.incorrect}.sum
-	@totalnoanswer = User.find(current_user).statistics.map{|x| x.noanswer}.sum
-	@totalquest = User.find(current_user).statistics.map{|x| x.total}.sum
-	@totalscore = (@totalcorrect.to_f / @totalquest.to_f).round(3) * 100
+    @statistics = @user.statistics.paginate(page: params[:page])
+
+  	auxTime = User.find(current_user).statistics.map{|x| x.time}.sum
+  	@totaltime = (auxTime / 3600).to_s + "h " + (auxTime / 60 % 60).to_s + "m " + (auxTime % 60).to_s + "s"
+  	@totalcorrect = User.find(current_user).statistics.map{|x| x.correct}.sum
+  	@totalincorrect = User.find(current_user).statistics.map{|x| x.incorrect}.sum
+  	@totalnoanswer = User.find(current_user).statistics.map{|x| x.noanswer}.sum
+  	@totalquest = User.find(current_user).statistics.map{|x| x.total}.sum
+  	@totalscore = (@totalcorrect.to_f / @totalquest.to_f).round(2) * 100
 	
   end
 
