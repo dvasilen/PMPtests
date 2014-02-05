@@ -1,4 +1,5 @@
 Pmp::Application.routes.draw do
+  post "statistics/save"  
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
