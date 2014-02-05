@@ -37,11 +37,11 @@ $(document).ready(function(){
         $( "#QuestionsBank" ).val( $( "#slider-range-max" ).slider( "value" ));
         SetPool();
     });
-    $( "#PMPExam" ).click(function() {$(this).toggleClass("active");SetPool();});
-    $( "#QuestionPool" ).click(function() {$(this).toggleClass("active");SetPool();});
-    $( "#RitaPool" ).click(function() {$(this).toggleClass("active");SetPool();});
-    $( "#ATTPool" ).click(function() {$(this).toggleClass("active");SetPool();});
-    $( "#PMPpractice" ).click(function() {$(this).toggleClass("active");SetPool();});
+    $( "#PMPExam" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
+    $( "#QuestionPool" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
+    $( "#RitaPool" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
+    $( "#ATTPool" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
+    $( "#PMPpractice" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
     $("#StartExam").click(function(){
         TOTAL=parseInt($("#QuestionsBank").val(), 10);
         if(TOTAL>SelectedQuestionPool.length){TOTAL=SelectedQuestionPool.length;}
@@ -177,3 +177,7 @@ function StartExam() {
         EndExam();
     });
 }
+
+
+
+
