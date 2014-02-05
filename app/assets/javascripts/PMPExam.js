@@ -91,7 +91,10 @@ function EndExam() {
     $("#Incorrect").html("Incorrect: "+Incorrect).addClass("text-error");
     $("#NoResponse").html("NoResponse: "+NoResponse).addClass("text-warning");
     $("#AllQuestions").slideDown( "slow", function() {});
-    $("#Results").slideDown( "slow", function() {});    
+    $("#Results").slideDown( "slow", function() {});
+	
+	/*Send statistics*/
+	$.post( "statistics/save",{ correct: Correct, incorrect: Incorrect, noanswer: NoResponse, time:TotalTime });
 }
 
 
