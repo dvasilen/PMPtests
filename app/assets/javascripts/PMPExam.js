@@ -121,7 +121,7 @@ function StartExam() {
         if ($.inArray(INDEX,Marked)!==-1){$("#mark").addClass("btn-warning");}else{{$("#mark").removeClass("btn-warning");}}
 
     }        
-    LocalQuestionPool=$.randomize(SelectedQuestionPool).slice(0,TOTAL);
+    LocalQuestionPool=$.randomize($.randomize($.randomize($.randomize(SelectedQuestionPool)))).slice(0,TOTAL);
     InsertQuestion(LocalQuestionPool,INDEX,TOTAL);
     $("#next").click(function(){
         if(!$(this).hasClass("disabled")){
