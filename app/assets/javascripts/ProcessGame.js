@@ -11,7 +11,7 @@ $(document).ready(function(){
       ProcessDef=ProcessPool["Processes"][index]["Definition"];
       ProcessKey=ProcessPool["Processes"][index]["Key"];
       $("#Dropables").append("<p>"+ProcessName+' <b>definition</b>:</p><div id="'+ProcessNameTrim+'-definition" class="DropableBox GreyBox"></div><p>'+ProcessName+' <b>key benefit</b>:</p><div id="'+ProcessNameTrim+'-key" class="GreyBox"></div>');
-      $("#Draggables").append('<div id="'+ProcessNameTrim+'-definition-drag" class="DraggableBox BlueBox">'+ProcessDef+'</div><div id="'+ProcessNameTrim+'-key-drag" class="BlueBox">'+ProcessKey+'</div>');
+      $("#Draggables").append('<div id="'+ProcessNameTrim+'-definition-drag" class="DraggableBox BlueBox">'+ProcessDef+'</div><div id="'+ProcessNameTrim+'-key-drag" class="DraggableBox BlueBox">'+ProcessKey+'</div>');
       $("#Draggables").randomize("div.DraggableBox");
     });
     
