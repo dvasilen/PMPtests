@@ -233,3 +233,9 @@ label{white-space:normal;}
 .GreenBox{
   background-color: #79FD70;
 }
+.DraggableBox:hover{
+  cursor:pointer;
+}
+.DraggableBox:active {
+  cursor:move;
+}
