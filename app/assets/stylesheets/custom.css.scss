@@ -218,3 +218,18 @@ input {
 
 label{white-space:normal;}
 .radio {text-transform:capitalize;}
+
+
+
+/* Process Game */
+
+.BlueBox{
+  background-color: #959DF2;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  @include box_sizing;
+}
+.GreenBox{
+  background-color: #79FD70;
+}

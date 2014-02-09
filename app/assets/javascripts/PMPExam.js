@@ -9,11 +9,19 @@ Marked=[];
 $(document).ready(function(){
     function SetPool() {
         SelectedQuestionPool=[];
-        if ($("#PMPExam").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPExam["Questions"]);};
-        if ($("#QuestionPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(QuestionPool["Questions"]);};
-        if ($("#RitaPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(RitaPool["Questions"]);};
-        if ($("#ATTPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(ATTPool["Questions"]);};
-        if ($("#PMPpractice").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPpractice["Questions"]);};
+        if ($("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && !$("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){
+            SelectedQuestionPool=PowerPMPPool["Questions"];
+            $('#PwrPMP').show();
+        }
+        else{
+            $('#PwrPMP').hide();
+            if ($("#PMPExam").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPExam["Questions"]);};
+            if ($("#QuestionPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(QuestionPool["Questions"]);};
+            if ($("#RitaPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(RitaPool["Questions"]);};
+            if ($("#ATTPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(ATTPool["Questions"]);};
+            if ($("#PMPpractice").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPpractice["Questions"]);};
+                
+        };
         $("#slider-range-max").slider("option", "max", SelectedQuestionPool.length);
         $("#QuestionsBank").val( $( "#slider-range-max" ).slider( "value" ));
         $("#totalbank").html(SelectedQuestionPool.length);
