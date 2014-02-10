@@ -9,12 +9,11 @@ Marked=[];
 $(document).ready(function(){
     function SetPool() {
         SelectedQuestionPool=[];
-        if ($("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && !$("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){
+        if ($("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && !$("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){$('#PwrPMP').show();}else{$('#PwrPMP').hide();}
+        if ($("#PwrPMP").hasClass("active") && $("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && !$("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){
             SelectedQuestionPool=PowerPMPPool["Questions"];
-            $('#PwrPMP').show();
         }
         else{
-            $('#PwrPMP').hide();
             if ($("#PMPExam").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(PMPExam["Questions"]);};
             if ($("#QuestionPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(QuestionPool["Questions"]);};
             if ($("#RitaPool").hasClass("active")){SelectedQuestionPool=SelectedQuestionPool.concat(RitaPool["Questions"]);};
@@ -45,6 +44,7 @@ $(document).ready(function(){
         $( "#QuestionsBank" ).val( $( "#slider-range-max" ).slider( "value" ));
         SetPool();
     });
+    $( "#PwrPMP" ).click(function() {$(this).toggleClass("active").toggleClass("btn-danger");SetPool();});
     $( "#PMPExam" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
     $( "#QuestionPool" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
     $( "#RitaPool" ).click(function() {$(this).toggleClass("active").toggleClass("btn-primary btn-warning");SetPool();});
