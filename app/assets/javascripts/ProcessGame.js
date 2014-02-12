@@ -52,7 +52,7 @@ $(document).ready(function(){
       if (index>=60 && index<66) {$(this).attr("style","background-color:#C2FFAD;")};
       if (index>=66 && index<78) {$(this).attr("style","background-color:#B2E0F0;")};
       if (index>=78 && index<86) {$(this).attr("style","background-color:#E6B280;")};
-      if (index>=78) {$(this).attr("style","background-color:#F0F0F0;")};
+      if (index>=86) {$(this).attr("style","background-color:#F0F0F0;")};
     });
 
 

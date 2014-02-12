@@ -9,8 +9,8 @@ Marked=[];
 $(document).ready(function(){
     function SetPool() {
         SelectedQuestionPool=[];
-        if ($("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && !$("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){$('#PwrPMP').show();}else{$('#PwrPMP').hide();}
-        if ($("#PwrPMP").hasClass("active") && $("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && !$("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){
+        if ($("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && $("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){$('#PwrPMP').show();}else{$('#PwrPMP').hide();}
+        if ($("#PwrPMP").hasClass("active") && $("#PMPExam").hasClass("active") && $("#PMPpractice").hasClass("active") && !$("#QuestionPool").hasClass("active") && $("#RitaPool").hasClass("active") && !$("#ATTPool").hasClass("active")){
             SelectedQuestionPool=PowerPMPPool["Questions"];
         }
         else{
