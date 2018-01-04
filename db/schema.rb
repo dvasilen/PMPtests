@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140204190208) do
 
-  create_table "statistics", force: true do |t|
+  create_table "statistics", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "correct"
     t.integer  "incorrect"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140204190208) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
